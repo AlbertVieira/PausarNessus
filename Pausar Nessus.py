@@ -4,7 +4,7 @@ import threading
 import time
 from datetime import datetime
 
-#!\Users\alber\OneDrive\Documentos\Scripts
+
 # -- coding: utf-8 --
 # Configuración inicial
 NESSUS_URL = "https://<TU_NESSUS_URL>"  # Reemplaza con la URL de tu instancia de Nessus
