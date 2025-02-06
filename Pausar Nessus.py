@@ -17,7 +17,7 @@ HEADERS = {
 }
 
 def obtener_escaneos():
-    """Obtiene la lista de escaneos desde Nessus."""
+    #"""Obtiene la lista de escaneos desde Nessus."""
     url = f"{NESSUS_URL}/scans"
     response = requests.get(url, headers=HEADERS)
     if response.status_code == 200:
@@ -27,7 +27,7 @@ def obtener_escaneos():
         return []
 
 def pausar_escaneo(scan_id):
-    """Pausa un escaneo activo."""
+    #"""Pausa un escaneo activo."""
     url = f"{NESSUS_URL}/scans/{scan_id}/pause"
     response = requests.post(url, headers=HEADERS)
     if response.status_code == 200:
@@ -36,7 +36,7 @@ def pausar_escaneo(scan_id):
         print(f"Error al pausar escaneo {scan_id}: {response.status_code} - {response.text}")
 
 def reanudar_escaneo(scan_id):
-    """Reanuda un escaneo pausado."""
+    #"""Reanuda un escaneo pausado."""
     url = f"{NESSUS_URL}/scans/{scan_id}/resume"
     response = requests.post(url, headers=HEADERS)
     if response.status_code == 200:
@@ -45,23 +45,23 @@ def reanudar_escaneo(scan_id):
         print(f"Error al reanudar escaneo {scan_id}: {response.status_code} - {response.text}")
 
 def programar_pausa(scan_id, hora):
-    """Programa la pausa de un escaneo a una hora específica."""
+    #"""Programa la pausa de un escaneo a una hora específica."""
     schedule.every().day.at(hora).do(pausar_escaneo, scan_id=scan_id)
     print(f"Pausa programada para el escaneo {scan_id} a las {hora}.")
 
 def programar_reanudacion(scan_id, hora):
-    """Programa la reanudación de un escaneo a una hora específica."""
+    #"""Programa la reanudación de un escaneo a una hora específica."""
     schedule.every().day.at(hora).do(reanudar_escaneo, scan_id=scan_id)
     print(f"Reanudación programada para el escaneo {scan_id} a las {hora}.")
 
 def ejecutar_schedule():
-    """Ejecuta los trabajos programados en segundo plano."""
+    #"""Ejecuta los trabajos programados en segundo plano."""
     while True:
         schedule.run_pending()
         time.sleep(1)
 
 def mostrar_menu():
-    """Muestra un menú para interactuar con los escaneos."""
+    #"""Muestra un menú para interactuar con los escaneos."""
     escaneos = obtener_escaneos()
     if not escaneos:
         print("No se encontraron escaneos.")
